@@ -1,33 +1,42 @@
-document.getElementById('bmiForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+document.getElementById("resetButton").addEventListener("click", function () {
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = ""; 
+});
 
-    const gender = document.getElementById('gender').value;
-    const weight = parseFloat(document.getElementById('weight').value);
-    const height = parseFloat(document.getElementById('height').value) / 100; // Convert to meters
+document.getElementById("bmiForm").addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    if (!gender || isNaN(weight) || isNaN(height)) {
-        alert('Please fill out all fields correctly.');
+    const gender = document.querySelector('input[name="gender"]:checked')?.value;
+    if (!gender) {
+        alert("Silakan pilih jenis kelamin.");
         return;
     }
 
-    const bmi = (weight / (height * height)).toFixed(2);
-    let category;
+    const berat = parseFloat(document.getElementById("berat").value);
+    const tinggi = parseFloat(document.getElementById("tinggi").value);
 
-    if (bmi < 18.5) {
-        category = 'Underweight';
-    } else if (bmi < 24.9) {
-        category = 'Normal weight';
-    } else if (bmi < 29.9) {
-        category = 'Overweight';
-    } else {
-        category = 'Obesity';
+    if (isNaN(berat) || isNaN(tinggi) || berat <= 0 || tinggi <= 0) {
+        alert("Masukkan nilai berat dan tinggi yang valid.");
+        return;
     }
 
-    const genderText = gender === 'male' ? 'Male' : 'Female';
+const tinggiMeter = tinggi / 100;
+const bmi = (berat / (tinggiMeter * tinggiMeter)).toFixed(2);
+let category;
 
-    document.getElementById('result').innerHTML = `
-        Gender: ${genderText}<br>
-        BMI: ${bmi}<br>
-        Category: ${category}
-    `;
+if (bmi < 18.5) {
+    category = 'Kekurangan berat badan';
+} else if (bmi < 24.9) {
+    category = 'Normal';
+} else if (bmi < 29.9) {
+    category = 'Berat badan berlebih';
+} else {
+    category = 'Obesitas';
+}
+
+const resultDiv = document.getElementById("result");
+resultDiv.innerHTML = `<p>Jenis Kelamin: ${gender}</p>
+                       <p>BMI Anda: ${bmi}</p>
+                       <p>Kategori: ${category}</p>`;
+
 });

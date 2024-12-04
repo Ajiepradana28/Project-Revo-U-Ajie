@@ -3,30 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator BMI</title>
+    <title>KALKULATOR BMI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Kalkulator BMI</h1>
+        <h1>KALKULATOR BMI</h1>
+        <h2></h2>
         <form id="bmiForm">
             <div class="input-group">
-                <label for="gender">Gender:</label>
-                <select id="gender" required>
-                    <option value="" disabled selected>Select your gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
+                <label>Jenis Kelamin:</label>
+                <div>
+                    <input type="radio" id="laki-laki" name="gender" value="Laki-laki" required>
+                    <label for="laki-laki">Laki-laki</label>
+                </div>
+                <div>
+                    <input type="radio" id="perempuan" name="gender" value="Perempuan">
+                    <label for="perempuan">Perempuan</label>
+                </div>
             </div>
             <div class="input-group">
-                <label for="weight">Weight (kg):</label>
-                <input type="number" id="weight" required>
+                <label for="berat">Berat (kg):</label>
+                <input type="number" id="berat" required>
             </div>
             <div class="input-group">
-                <label for="height">Height (cm):</label>
-                <input type="number" id="height" required>
+                <label for="tinggi">Tinggi (cm):</label>
+                <input type="number" id="tinggi" required>
             </div>
-            <button type="submit">Calculate BMI</button>
+            <div class="input-group">
+                <label for="usia">Usia (tahun):</label>
+                <input type="number" id="usia" required>
+            </div>
+            <button type="submit">Hasil BMI</button>
+            <button type="reset" id="resetButton">Reset</button>
         </form>
         <div id="result"></div>
     </div>
